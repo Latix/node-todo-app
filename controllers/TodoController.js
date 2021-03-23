@@ -11,7 +11,8 @@ mongoose.connect('mongodb+srv://cluster0.9hlj4.mongodb.net', {
 
 //Create schema
 var todoSchema = new mongoose.Schema({
-    item: String
+    item: { type: String, lowercase: true, trim: true },
+    created_at:  { type: Date, default: Date.now },
 });
 
 var Todo = mongoose.model('Todo', todoSchema);
@@ -31,7 +32,6 @@ module.exports = function (app) {
     app.get('/todo', function (req, res) {
         Todo.find({}, function (err, data) {
             if (err) throw err;
-
             res.render('todo', {
                 todos: data
             });
