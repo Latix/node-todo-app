@@ -1,4 +1,4 @@
-var express = required('express');
+var express = require('express');
 var todoController = require('./controllers/TodoController');
 
 var app = express();
